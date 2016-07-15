@@ -4,7 +4,7 @@ Pokémon GO API in Python
 to-do:
 - [ ] eat more proto.. 
 - [x] login as pokemon trainer + token
-- [ ] login over google + token
+- [x] login over google + token
 - [ ] run to pokestops
 - [ ] catch pokemons
 - [ ] fully automate this script
