@@ -1,7 +1,6 @@
 import base64
 import time
 import re
-from random import randint
 import random
 
 
@@ -28,7 +27,7 @@ def start_work(access_token,ltype):
 	api_endpoint =public.get_api_endpoint(access_token,ltype)
 	if api_endpoint is not None:
 		print('[+] Received API endpoint: {}'.format(api_endpoint))
-		profile = public.get_profile(api_endpoint, access_token)
+		profile = public.get_profile(api_endpoint, access_token,ltype)
 		if profile is not None:
 			print('[+] Login successful')
 
@@ -52,19 +51,22 @@ def start_work(access_token,ltype):
 def start_private_show(access_token,ltype):
 	print '[+] Token:',access_token[:40]+'...'
 	prot1=logic.gen_first_data(access_token)
-	new_api= api.get_rpc_server(access_token,prot1)
-	login_data=api.use_api(new_api,prot1)
-	cis= api.get_session(login_data)
-	#for t in stops.get_static():
-		#print '[!] farming pokestop..'
-		#walking=logic.simulate_walking(cis,t)
-		#use_api(new_api,walking)
-		#time.sleep(1)
-		#Kinder_pre=logic.gen_stop_data_pre(cis,t)
-		#use_api(new_api,Kinder_pre)
-		#Kinder= logic.gen_stop_data(cis,t)
-		#api.use_api(new_api,Kinder)
-		#time.sleep(3)
+	new_rcp_point,hash,lv,id= api.get_rpc_server(access_token,prot1)
+	print new_rcp_point
+	exit()
+	login_data=api.use_api(new_rcp_point,prot1)
+	#cis= api.get_session(login_data)
+	if ses is not None:
+		for t in stops.get_static():
+			print '[!] farming pokestop..'
+			#walking=logic.simulate_walking(cis,t)
+			#api.use_api(new_rcp_point,walking)
+			#time.sleep(1)
+			#Kinder_pre=logic.gen_stop_data_pre(cis,t)
+			#use_api(new_rcp_point,Kinder_pre)
+			Kinder= logic.gen_stop_data(ses,t)
+			api.use_api(new_rcp_point,Kinder)
+			time.sleep(3)
 	
 def main():
 	if config.google:

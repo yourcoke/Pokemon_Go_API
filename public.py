@@ -100,7 +100,7 @@ def get_api_endpoint(access_token,ltype):
         return None
 
 
-def get_profile(api_endpoint, access_token):
+def get_profile(api_endpoint, access_token,ltype):
     req = public_proto_pb2.RequestEnvelop()
 
     req1 = req.requests.add()
