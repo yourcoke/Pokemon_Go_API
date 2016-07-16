@@ -106,7 +106,7 @@ def get_profile(api_endpoint, access_token):
     req1 = req.requests.add()
     req1.type = 2
 
-    return api_req(api_endpoint, access_token, req.requests)
+    return api_req(api_endpoint, access_token, req.requests,ltype)
 
 
 def login_ptc(username, password):
