@@ -98,7 +98,11 @@ def login_google(email,passw):
 				'signIn':'Sign in',
 				'PersistentCookie':'yes'}
 		r2=config.s.post(third,data=data2)
-		fourth= r2.history[1].headers['Location'].replace('amp%3B','')
+		#thanks Nostrademous
+		try:
+			fourth= r2.history[1].headers['Location'].replace('amp%3B','')
+		except:
+			fourth= r2.history[0].headers['Location'].replace('amp%3B','')
 		r3=config.s.get(fourth)
 		
 		client_id=re.search('client_id=.*&from_login',fourth)
