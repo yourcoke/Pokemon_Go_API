@@ -1,51 +1,91 @@
 import base64
 import time
 import re
+from random import randint
+import random
+
+
 import config
 import login
+import public
+import logins
 try:
 	import pokemon_pb2
-	import pokemon
+	import logic
+	import stops
+	import api
+	config.pub=False
 except:
-	print 'missing files.. ask Mila432..'
-	exit()
-try:
-	from cStringIO import StringIO
-except ImportError:
-	from StringIO import StringIO
+	import public_proto_pb2
+	config.pub=True
+	
+def generate_random_long():
+	return long(random.choice(range(0,10000000)))
+	
+#https://github.com/tejado
+def start_work(access_token,ltype):
+	print '[+] Token:',access_token[:40]+'...'
+	api_endpoint =public.get_api_endpoint(access_token,ltype)
+	if api_endpoint is not None:
+		print('[+] Received API endpoint: {}'.format(api_endpoint))
+		profile = public.get_profile(api_endpoint, access_token)
+		if profile is not None:
+			print('[+] Login successful')
 
-def get_api(access_token):
-	try:
-		r=config.s.post(config.api_url,data=base64.b64decode(pokemon.generate_login(access_token)),verify=False)
-		pok = pokemon_pb2.Login()
-		pok.ParseFromString(r.content)
-		return 'https://'+pok.api_point+'/rpc'
-	except:
-		print '[-] server offline'
-		time.sleep(3)
-		get_api(access_token)
+			profile = profile.payload[0].profile
+			print('[+] Username: {}'.format(profile.username))
+
+			creation_time = datetime.fromtimestamp(int(profile.creation_time)/1000)
+			print('[+] You are playing Pokemon Go since: {}'.format(
+				creation_time.strftime('%Y-%m-%d %H:%M:%S'),
+			))
+			print('[+] Poke Storage: {}'.format(profile.poke_storage))
+			print('[+] Item Storage: {}'.format(profile.item_storage))
+			for curr in profile.currency:
+				print('[+] {}: {}'.format(curr.type, curr.amount))
+		else:
+			print('[-] Ooops...')
+	else:
+		print('[-] RPC server offline')
+		exit()
 		
-def use_api(target_api,access_token):
-	if config.debug:
-		print '[!] using api:',target_api
-	r=config.s.post(target_api,data=base64.b64decode(pokemon.generate_login(access_token)),verify=False)
-	return r.content
+def start_private_show(access_token,ltype):
+	print '[+] Token:',access_token[:40]+'...'
+	prot1=logic.gen_first_data(access_token)
+	new_api= api.get_rpc_server(access_token,prot1)
+	login_data=api.use_api(new_api,prot1)
+	cis= api.get_session(login_data)
+	#for t in stops.get_static():
+		#print '[!] farming pokestop..'
+		#walking=logic.simulate_walking(cis,t)
+		#use_api(new_api,walking)
+		#time.sleep(1)
+		#Kinder_pre=logic.gen_stop_data_pre(cis,t)
+		#use_api(new_api,Kinder_pre)
+		#Kinder= logic.gen_stop_data(cis,t)
+		#api.use_api(new_api,Kinder)
+		#time.sleep(3)
 	
 def main():
 	if config.google:
 		print '[!] Using google as login..'
-		google_data= login.login_google('mygoogle@gmail.com','superstrongpassword')
-		access_token=google_data['id_token']
+		google_data= login.login_google(logins.google_mail,logins.google_password)
+		if google_data is not None:
+			access_token=google_data['id_token']
+			ltype='google'
+		else:
+			access_token=None
 	else:
 		print '[!] I am a poketrainer..'
-		access_token= login.login_pokemon('login_pokemon','superstrongpassword')
+		access_token= login.login_pokemon(logins.pokemon_username,logins.pokemon_password)
+		ltype='ptc'
 	if access_token is not None:
-		print '[+] Token:',access_token[:40]+'...'
-		new_api= get_api(access_token)
-		if 'Milaly432' in use_api(new_api,access_token):
-			print '[+] logged in'
+		if config.pub:
+			start_work(access_token,ltype)
 		else:
-			print '[-] protobuf sux..'
+			start_private_show(access_token,ltype)
+	else:
+		print '[-] access_token bad'
 	
 if __name__ == '__main__':
 	main()
