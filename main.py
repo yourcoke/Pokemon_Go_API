@@ -80,6 +80,7 @@ def main():
 		access_token= login.login_pokemon(logins.pokemon_username,logins.pokemon_password)
 		ltype='ptc'
 	if access_token is not None:
+		print '[!] using:',config.pub
 		if config.pub:
 			start_work(access_token,ltype)
 		else:

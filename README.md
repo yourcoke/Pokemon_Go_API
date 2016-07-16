@@ -22,6 +22,7 @@ Pokémon GO API in Python
 - python 2.7
 - requests
 - protobuf
+- geopy
 
 # Credits:
 - Mila432
