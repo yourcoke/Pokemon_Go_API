@@ -8,12 +8,12 @@ proxies = {
   'http': 'http://127.0.0.1:8888',
   'https': 'http://127.0.0.1:8888',
 }
-use_proxy=True
+use_proxy=False
 debug=True
 google=True
 
 s=requests.session()
 if use_proxy:
 	s.proxies.update(proxies)
+	s.verify=False
 s.headers.update({'User-Agent':'Niantic App'})
-s.verify=False
