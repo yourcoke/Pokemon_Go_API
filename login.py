@@ -10,27 +10,22 @@ def login_pokemon(user,passw):
 		head={'User-Agent':'niantic'}
 		r=config.s.get(config.login_url,headers=head)
 		jdata=json.loads(r.content)
-		data={'lt':jdata['lt'],
-			'execution':jdata['execution'],
-			'_eventId':'submit',
-			'username':user,
-			'password':passw}
-		r1=config.s.post(config.login_url,data=data,headers=head)
+			
+		new_url= r.history[0].headers['Location']
+		data = OrderedDict([('lt', jdata['lt']), ('execution',jdata['execution']), ('_eventId', 'submit'), ('username', user), ('password', passw)])
+		
+		r1=config.s.post(new_url,data=data,headers=head,allow_redirects=False)
+		raw_ticket= r1.headers['Location']
 		if 'errors' in r1.content:
 			print json.loads(r1.content)['errors'][0].replace('&#039;','\'')
 			return None
-		ticket=re.sub('.*ticket=','',r1.history[0].headers['Location'])
-		data1={'client_id':'mobile-app_pokemon-go',
-				'redirect_uri':'https://www.nianticlabconfig.s.com/pokemongo/error',
-				'client_secret':'w8ScCUXJQc6kXKw8FiOhd8Fixzht18Dq3PEVkUCP5ZPxtgyWsbTvWHFLm2wNY0JR',
-				'grant_type':'refresh_token',
-				'code':ticket}
+		ticket=re.sub('.*ticket=','',raw_ticket)
+
+		data1 = OrderedDict([('client_id', 'mobile-app_pokemon-go'), ('redirect_uri','https://www.nianticlabs.com/pokemongo/error'), ('client_secret', 'w8ScCUXJQc6kXKw8FiOhd8Fixzht18Dq3PEVkUCP5ZPxtgyWsbTvWHFLm2wNY0JR'), ('grant_type', 'refresh_token'), ('code', ticket)])
+		
 		r2=config.s.post(config.login_oauth,data=data1)
-		if 'error=' in r2.content:
-			print '[-] pokemon attacking the login server'
-			return None
-		access_token=re.sub('&expireconfig.s.*','',r2.content)
-		access_token=re.sub('.*access_token=','',access_token)
+		access_token=re.sub('.*en=','',r2.content)
+		access_token=re.sub('.com.*','.com',access_token)
 		return access_token
 	except:
 		print '[-] pokemon attacking the login server'
@@ -113,7 +108,7 @@ def login_google(email,passw):
 		connect_approve=re.sub('.*action="','',connect_approve.group(0))
 		connect_approve=re.sub('" me.*','',connect_approve)
 
-		data3 = OrderedDict([('bgresponse', 'js_disabled'), ('_utf8', '☃'), ('state_wrapper', state_wrapper), ('submit_access', 'true')])
+		data3 = OrderedDict([('bgresponse', 'js_disabled'), ('_utf8', '?'), ('state_wrapper', state_wrapper), ('submit_access', 'true')])
 		r4=config.s.post(connect_approve.replace('amp;',''),data=data3)
 
 		code= re.search('<input id="code" type="text" readonly="readonly" value=".*" style=".*" onclick=".*;" />',r4.content)
