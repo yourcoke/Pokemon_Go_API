@@ -43,6 +43,9 @@ def get_acces_token(usr,pws,type):
 def main():
 	if 'nux' not in platform.system():
 		os.system("title Pokemon GO API Python")
+		os.system("cls")
+	else:
+		os.system("clear")
 	parser = argparse.ArgumentParser()
 	parser.add_argument("-u", "--username", help="Login", required=True)
 	parser.add_argument("-p", "--password", help="Password", required=True)
