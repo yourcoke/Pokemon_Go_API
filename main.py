@@ -39,12 +39,13 @@ def get_acces_token(usr,pws,type):
 		access_token= login.login_pokemon(usr,pws)
 		ltype='ptc'
 	return access_token,ltype
-	
+
 def main():
-	if 'nux' not in platform.system():
+	if platform.system() == 'Windows':
 		os.system("title Pokemon GO API Python")
 		os.system("cls")
 	else:
+		# Catches "Lunux and Darwin (OSX)
 		os.system("clear")
 	parser = argparse.ArgumentParser()
 	parser.add_argument("-u", "--username", help="Login", required=True)
@@ -63,6 +64,6 @@ def main():
 			print '[-] access_token bad'
 	else:
 		print '[!] used type "%s" only Google or PTC valid'%(args.type.lower())
-	
+
 if __name__ == '__main__':
 	main()
