@@ -18,7 +18,7 @@ _sym_db = _symbol_database.Default()
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='public_proto.proto',
   package='',
-  serialized_pb=_b('\n\x12public_proto.proto\"\xc7\x04\n\x0eRequestEnvelop\x12\x10\n\x08unknown1\x18\x01 \x02(\x05\x12\x0e\n\x06rpc_id\x18\x03 \x01(\x03\x12*\n\x08requests\x18\x04 \x03(\x0b\x32\x18.RequestEnvelop.Requests\x12*\n\x08unknown6\x18\x06 \x01(\x0b\x32\x18.RequestEnvelop.Unknown6\x12\x10\n\x08latitude\x18\x07 \x01(\x06\x12\x11\n\tlongitude\x18\x08 \x01(\x06\x12\x10\n\x08\x61ltitude\x18\t \x01(\x06\x12&\n\x04\x61uth\x18\n \x01(\x0b\x32\x18.RequestEnvelop.AuthInfo\x12\x11\n\tunknown12\x18\x0c \x01(\x03\x1a\x43\n\x08Requests\x12\x0c\n\x04type\x18\x01 \x02(\x05\x12)\n\x07message\x18\x02 \x01(\x0b\x32\x18.RequestEnvelop.Unknown3\x1a\x1c\n\x08Unknown3\x12\x10\n\x08unknown4\x18\x01 \x02(\t\x1ao\n\x08Unknown6\x12\x10\n\x08unknown1\x18\x01 \x02(\x05\x12\x33\n\x08unknown2\x18\x02 \x02(\x0b\x32!.RequestEnvelop.Unknown6.Unknown2\x1a\x1c\n\x08Unknown2\x12\x10\n\x08unknown1\x18\x01 \x02(\x0c\x1au\n\x08\x41uthInfo\x12\x10\n\x08provider\x18\x01 \x02(\t\x12+\n\x05token\x18\x02 \x02(\x0b\x32\x1c.RequestEnvelop.AuthInfo.JWT\x1a*\n\x03JWT\x12\x10\n\x08\x63ontents\x18\x01 \x02(\t\x12\x11\n\tunknown13\x18\x02 \x02(\x05\"\xf7\x07\n\x0fResponseEnvelop\x12\x10\n\x08unknown1\x18\x01 \x02(\x05\x12\x10\n\x08unknown2\x18\x02 \x01(\x03\x12\x0f\n\x07\x61pi_url\x18\x03 \x01(\t\x12+\n\x08unknown6\x18\x06 \x01(\x0b\x32\x19.ResponseEnvelop.Unknown6\x12+\n\x08unknown7\x18\x07 \x01(\x0b\x32\x19.ResponseEnvelop.Unknown7\x12)\n\x07payload\x18\x64 \x03(\x0b\x32\x18.ResponseEnvelop.Payload\x1ap\n\x08Unknown6\x12\x10\n\x08unknown1\x18\x01 \x02(\x05\x12\x34\n\x08unknown2\x18\x02 \x02(\x0b\x32\".ResponseEnvelop.Unknown6.Unknown2\x1a\x1c\n\x08Unknown2\x12\x10\n\x08unknown1\x18\x01 \x02(\x0c\x1a\x43\n\x08Unknown7\x12\x11\n\tunknown71\x18\x01 \x01(\x0c\x12\x11\n\tunknown72\x18\x02 \x01(\x03\x12\x11\n\tunknown73\x18\x03 \x01(\x0c\x1a\x46\n\x07Payload\x12\x10\n\x08unknown1\x18\x01 \x02(\x05\x12)\n\x07profile\x18\x02 \x01(\x0b\x32\x18.ResponseEnvelop.Profile\x1a\xaa\x04\n\x07Profile\x12\x15\n\rcreation_time\x18\x01 \x02(\x03\x12\x10\n\x08username\x18\x02 \x01(\t\x12\x0c\n\x04team\x18\x05 \x01(\x05\x12\x10\n\x08tutorial\x18\x07 \x01(\x0c\x12\x36\n\x06\x61vatar\x18\x08 \x01(\x0b\x32&.ResponseEnvelop.Profile.AvatarDetails\x12\x14\n\x0cpoke_storage\x18\t \x01(\x05\x12\x14\n\x0citem_storage\x18\n \x01(\x05\x12\x38\n\x0b\x64\x61ily_bonus\x18\x0b \x01(\x0b\x32#.ResponseEnvelop.Profile.DailyBonus\x12\x11\n\tunknown12\x18\x0c \x01(\x0c\x12\x11\n\tunknown13\x18\r \x01(\x0c\x12\x33\n\x08\x63urrency\x18\x0e \x03(\x0b\x32!.ResponseEnvelop.Profile.Currency\x1aX\n\rAvatarDetails\x12\x10\n\x08unknown2\x18\x02 \x01(\x05\x12\x10\n\x08unknown3\x18\x03 \x01(\x05\x12\x10\n\x08unknown9\x18\t \x01(\x05\x12\x11\n\tunknown10\x18\n \x01(\x05\x1aY\n\nDailyBonus\x12\x1e\n\x16NextCollectTimestampMs\x18\x01 \x01(\x03\x12+\n#NextDefenderBonusCollectTimestampMs\x18\x02 \x01(\x03\x1a(\n\x08\x43urrency\x12\x0c\n\x04type\x18\x01 \x02(\t\x12\x0e\n\x06\x61mount\x18\x02 \x01(\x05')
+  serialized_pb=_b('\n\x12public_proto.proto\"\xc7\x04\n\x0eRequestEnvelop\x12\x10\n\x08unknown1\x18\x01 \x02(\x05\x12\x0e\n\x06rpc_id\x18\x03 \x01(\x03\x12*\n\x08requests\x18\x04 \x03(\x0b\x32\x18.RequestEnvelop.Requests\x12*\n\x08unknown6\x18\x06 \x01(\x0b\x32\x18.RequestEnvelop.Unknown6\x12\x10\n\x08latitude\x18\x07 \x01(\x06\x12\x11\n\tlongitude\x18\x08 \x01(\x06\x12\x10\n\x08\x61ltitude\x18\t \x01(\x06\x12&\n\x04\x61uth\x18\n \x01(\x0b\x32\x18.RequestEnvelop.AuthInfo\x12\x11\n\tunknown12\x18\x0c \x01(\x03\x1a\x43\n\x08Requests\x12\x0c\n\x04type\x18\x01 \x02(\x05\x12)\n\x07message\x18\x02 \x01(\x0b\x32\x18.RequestEnvelop.Unknown3\x1a\x1c\n\x08Unknown3\x12\x10\n\x08unknown4\x18\x01 \x02(\t\x1ao\n\x08Unknown6\x12\x10\n\x08unknown1\x18\x01 \x02(\x05\x12\x33\n\x08unknown2\x18\x02 \x02(\x0b\x32!.RequestEnvelop.Unknown6.Unknown2\x1a\x1c\n\x08Unknown2\x12\x10\n\x08unknown1\x18\x01 \x02(\x0c\x1au\n\x08\x41uthInfo\x12\x10\n\x08provider\x18\x01 \x02(\t\x12+\n\x05token\x18\x02 \x02(\x0b\x32\x1c.RequestEnvelop.AuthInfo.JWT\x1a*\n\x03JWT\x12\x10\n\x08\x63ontents\x18\x01 \x02(\t\x12\x11\n\tunknown13\x18\x02 \x02(\x05\"\xf5\x07\n\x0fResponseEnvelop\x12\x10\n\x08unknown1\x18\x01 \x02(\x05\x12\x0e\n\x06rpc_id\x18\x02 \x01(\x03\x12\x0f\n\x07\x61pi_url\x18\x03 \x01(\t\x12+\n\x08unknown6\x18\x06 \x01(\x0b\x32\x19.ResponseEnvelop.Unknown6\x12+\n\x08unknown7\x18\x07 \x01(\x0b\x32\x19.ResponseEnvelop.Unknown7\x12)\n\x07payload\x18\x64 \x03(\x0b\x32\x18.ResponseEnvelop.Payload\x1ap\n\x08Unknown6\x12\x10\n\x08unknown1\x18\x01 \x02(\x05\x12\x34\n\x08unknown2\x18\x02 \x02(\x0b\x32\".ResponseEnvelop.Unknown6.Unknown2\x1a\x1c\n\x08Unknown2\x12\x10\n\x08unknown1\x18\x01 \x02(\x0c\x1a\x43\n\x08Unknown7\x12\x11\n\tunknown71\x18\x01 \x01(\x0c\x12\x11\n\tunknown72\x18\x02 \x01(\x03\x12\x11\n\tunknown73\x18\x03 \x01(\x0c\x1a\x46\n\x07Payload\x12\x10\n\x08unknown1\x18\x01 \x02(\x05\x12)\n\x07profile\x18\x02 \x01(\x0b\x32\x18.ResponseEnvelop.Profile\x1a\xaa\x04\n\x07Profile\x12\x15\n\rcreation_time\x18\x01 \x02(\x03\x12\x10\n\x08username\x18\x02 \x01(\t\x12\x0c\n\x04team\x18\x05 \x01(\x05\x12\x10\n\x08tutorial\x18\x07 \x01(\x0c\x12\x36\n\x06\x61vatar\x18\x08 \x01(\x0b\x32&.ResponseEnvelop.Profile.AvatarDetails\x12\x14\n\x0cpoke_storage\x18\t \x01(\x05\x12\x14\n\x0citem_storage\x18\n \x01(\x05\x12\x38\n\x0b\x64\x61ily_bonus\x18\x0b \x01(\x0b\x32#.ResponseEnvelop.Profile.DailyBonus\x12\x11\n\tunknown12\x18\x0c \x01(\x0c\x12\x11\n\tunknown13\x18\r \x01(\x0c\x12\x33\n\x08\x63urrency\x18\x0e \x03(\x0b\x32!.ResponseEnvelop.Profile.Currency\x1aX\n\rAvatarDetails\x12\x10\n\x08unknown2\x18\x02 \x01(\x05\x12\x10\n\x08unknown3\x18\x03 \x01(\x05\x12\x10\n\x08unknown9\x18\t \x01(\x05\x12\x11\n\tunknown10\x18\n \x01(\x05\x1aY\n\nDailyBonus\x12\x1e\n\x16NextCollectTimestampMs\x18\x01 \x01(\x03\x12+\n#NextDefenderBonusCollectTimestampMs\x18\x02 \x01(\x03\x1a(\n\x08\x43urrency\x12\x0c\n\x04type\x18\x01 \x02(\t\x12\x0e\n\x06\x61mount\x18\x02 \x01(\x05')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -374,8 +374,8 @@ _RESPONSEENVELOP_UNKNOWN6 = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=814,
-  serialized_end=926,
+  serialized_start=812,
+  serialized_end=924,
 )
 
 _RESPONSEENVELOP_UNKNOWN7 = _descriptor.Descriptor(
@@ -417,8 +417,8 @@ _RESPONSEENVELOP_UNKNOWN7 = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=928,
-  serialized_end=995,
+  serialized_start=926,
+  serialized_end=993,
 )
 
 _RESPONSEENVELOP_PAYLOAD = _descriptor.Descriptor(
@@ -453,8 +453,8 @@ _RESPONSEENVELOP_PAYLOAD = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=997,
-  serialized_end=1067,
+  serialized_start=995,
+  serialized_end=1065,
 )
 
 _RESPONSEENVELOP_PROFILE_AVATARDETAILS = _descriptor.Descriptor(
@@ -503,8 +503,8 @@ _RESPONSEENVELOP_PROFILE_AVATARDETAILS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1403,
-  serialized_end=1491,
+  serialized_start=1401,
+  serialized_end=1489,
 )
 
 _RESPONSEENVELOP_PROFILE_DAILYBONUS = _descriptor.Descriptor(
@@ -539,8 +539,8 @@ _RESPONSEENVELOP_PROFILE_DAILYBONUS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1493,
-  serialized_end=1582,
+  serialized_start=1491,
+  serialized_end=1580,
 )
 
 _RESPONSEENVELOP_PROFILE_CURRENCY = _descriptor.Descriptor(
@@ -575,8 +575,8 @@ _RESPONSEENVELOP_PROFILE_CURRENCY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1584,
-  serialized_end=1624,
+  serialized_start=1582,
+  serialized_end=1622,
 )
 
 _RESPONSEENVELOP_PROFILE = _descriptor.Descriptor(
@@ -674,8 +674,8 @@ _RESPONSEENVELOP_PROFILE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1070,
-  serialized_end=1624,
+  serialized_start=1068,
+  serialized_end=1622,
 )
 
 _RESPONSEENVELOP = _descriptor.Descriptor(
@@ -693,7 +693,7 @@ _RESPONSEENVELOP = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='unknown2', full_name='ResponseEnvelop.unknown2', index=1,
+      name='rpc_id', full_name='ResponseEnvelop.rpc_id', index=1,
       number=2, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -739,7 +739,7 @@ _RESPONSEENVELOP = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=609,
-  serialized_end=1624,
+  serialized_end=1622,
 )
 
 _REQUESTENVELOP_REQUESTS.fields_by_name['message'].message_type = _REQUESTENVELOP_UNKNOWN3
