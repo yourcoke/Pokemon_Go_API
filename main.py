@@ -5,6 +5,9 @@ import random
 from datetime import datetime
 import threading
 import argparse
+import os
+import platform
+import sys
 
 import config
 import login
@@ -38,6 +41,8 @@ def get_acces_token(usr,pws,type):
 	return access_token,ltype
 	
 def main():
+	if 'nux' not in platform.system():
+		os.system("title Pokemon GO API Python")
 	parser = argparse.ArgumentParser()
 	parser.add_argument("-u", "--username", help="Login", required=True)
 	parser.add_argument("-p", "--password", help="Password", required=True)
