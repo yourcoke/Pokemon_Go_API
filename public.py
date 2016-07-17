@@ -9,6 +9,7 @@ from datetime import datetime
 from geopy.geocoders import GoogleV3
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+from google.protobuf.internal import encoder
 
 API_URL = 'https://pgorelease.nianticlabs.com/plfe/rpc'
 LOGIN_URL = 'https://sso.pokemon.com/sso/login?service=https%3A%2F%2Fsso.pokemon.com%2Fsso%2Foauth2.0%2FcallbackAuthorize'
@@ -64,7 +65,7 @@ def set_location(location_name):
 	geolocator = GoogleV3()
 	loc = geolocator.geocode(location_name)
 
-	print('[!] Your given location: {}'.format(loc.address))
+	print('[!] Your given location: {}'.format(loc.address.encode('utf-8')))
 	print('[!] lat/long/alt: {} {} {}'.format(loc.latitude, loc.longitude, loc.altitude))
 	set_location_coords(loc.latitude, loc.longitude, loc.altitude)
 
