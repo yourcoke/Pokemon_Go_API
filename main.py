@@ -3,6 +3,7 @@ import time
 import re
 import random
 from datetime import datetime
+import threading
 
 import config
 import login
@@ -20,54 +21,44 @@ except:
 	
 def generate_random_long():
 	return long(random.choice(range(0,10000000)))
+		
+def work_with_stops(current_stop,ses,new_rcp_point):
+	Kinder= logic.gen_stop_data(ses,current_stop)
+	api.use_api(new_rcp_point,Kinder)
+	time.sleep(1)
 	
-#https://github.com/tejado
-def start_work(access_token,ltype):
-	print '[+] Token:',access_token[:40]+'...'
-	api_endpoint =public.get_api_endpoint(access_token,ltype)
-	if api_endpoint is not None:
-		print('[+] Received API endpoint: {}'.format(api_endpoint))
-		profile = public.get_profile(api_endpoint, access_token,ltype)
-		if profile is not None:
-			print('[+] Login successful')
-
-			profile = profile.payload[0].profile
-			print('[+] Username: {}'.format(profile.username))
-
-			creation_time = datetime.fromtimestamp(int(profile.creation_time)/1000)
-			print('[+] You are playing Pokemon Go since: {}'.format(
-				creation_time.strftime('%Y-%m-%d %H:%M:%S'),
-			))
-			print('[+] Poke Storage: {}'.format(profile.poke_storage))
-			print('[+] Item Storage: {}'.format(profile.item_storage))
-			for curr in profile.currency:
-				print('[+] {}: {}'.format(curr.type, curr.amount))
-		else:
-			print('[-] Ooops...')
+def small_show(t,access_token):
+	print '[!] farming pokestop..'
+	prot1=logic.gen_first_data(access_token)
+	sid= api.get_rpc_server(access_token,prot1)
+	if sid is not None and sid.rpc_server is not None:
+		new_rcp_point='https://%s/rpc'%(sid.rpc_server,)
+		work_with_stops(t,sid.ses,new_rcp_point)
 	else:
-		print('[-] RPC server offline')
-		exit()
+		small_show(t,access_token)
 		
 def start_private_show(access_token,ltype):
 	print '[+] Token:',access_token[:40]+'...'
-	prot1=logic.gen_first_data(access_token)
-	new_rcp_point,ses= api.get_rpc_server(access_token,prot1)
-	print new_rcp_point
-	login_data=api.use_api(new_rcp_point,prot1)
-	#cis= api.get_session(login_data)
-	if ses is not None:
-		for t in stops.get_static():
-			print '[!] farming pokestop..'
+	for t in stops.get_static():
+		t = threading.Thread(target=small_show, args=(t,access_token,))
+		t.start()
+		#small_show(t,access_token)
+	#prot1=logic.gen_first_data(access_token)
+	#sid= api.get_rpc_server(access_token,prot1)
+	#new_rcp_point='https://%s/rpc'%(sid.rpc_server,)
+	#login_data=api.use_api(new_rcp_point,prot1)
+	#if sid is not None:
+	#	for t in stops.get_static():
+	#		print '[!] farming pokestop..'
+	#		work_with_stops(t,sid.ses,new_rcp_point)
 			#walking=logic.simulate_walking(ses,t)
 			#api.use_api(new_rcp_point,walking)
 			#time.sleep(1)
-			Kinder_pre=logic.gen_stop_data_pre(ses,t)
-			api.use_api(new_rcp_point,Kinder_pre)
-			Kinder= logic.gen_stop_data(ses,t)
-			api.use_api(new_rcp_point,Kinder)
-			time.sleep(3)
-	
-def main():
+			#Kinder_pre=logic.gen_stop_data_pre(ses,t)
+			#api.use_api(new_rcp_point,Kinder_pre)
+			#time.sleep(1)
+
+def get_acces_token():
 	if config.google:
 		print '[!] Using google as login..'
 		google_data= login.login_google(logins.google_mail,logins.google_password)
@@ -80,10 +71,14 @@ def main():
 		print '[!] I am a poketrainer..'
 		access_token= login.login_pokemon(logins.pokemon_username,logins.pokemon_password)
 		ltype='ptc'
+	return access_token,ltype
+	
+def main():
+	access_token,ltype=get_acces_token()
 	if access_token is not None:
 		print '[!] using:',config.pub
 		if config.pub:
-			start_work(access_token,ltype)
+			public.start_work(access_token,ltype)
 		else:
 			start_private_show(access_token,ltype)
 	else:
