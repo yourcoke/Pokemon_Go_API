@@ -45,7 +45,7 @@ def main():
 		os.system("title Pokemon GO API Python")
 		os.system("cls")
 	else:
-		# Catches "Lunux and Darwin (OSX)
+		# Catches "Linux" and "Darwin" (OSX)
 		os.system("clear")
 	parser = argparse.ArgumentParser()
 	parser.add_argument("-u", "--username", help="Login", required=True)
