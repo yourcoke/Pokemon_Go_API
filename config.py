@@ -3,14 +3,14 @@ from requests.packages.urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
 api_url='https://pgorelease.nianticlabs.com/plfe/rpc'
-login_url='https://sso.pokemon.com/sso/login?service=https%3A%2F%2Fsso.pokemon.com%2Fsso%2Foauth2.0%2FcallbackAuthorize'
+login_url='https://sso.pokemon.com/sso/oauth2.0/authorize?client_id=mobile-app_pokemon-go&redirect_uri=https%3A%2F%2Fwww.nianticlabs.com%2Fpokemongo%2Ferror'
 login_oauth='https://sso.pokemon.com/sso/oauth2.0/accessToken'
 
 proxies = {
   'http': 'http://127.0.0.1:8888',
   'https': 'http://127.0.0.1:8888',
 }
-use_proxy=False
+use_proxy=True
 debug=True
 
 google=True

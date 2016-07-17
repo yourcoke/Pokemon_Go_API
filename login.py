@@ -108,7 +108,7 @@ def login_google(email,passw):
 		connect_approve=re.sub('.*action="','',connect_approve.group(0))
 		connect_approve=re.sub('" me.*','',connect_approve)
 
-		data3 = OrderedDict([('bgresponse', 'js_disabled'), ('_utf8', '?'), ('state_wrapper', state_wrapper), ('submit_access', 'true')])
+		data3 = OrderedDict([('bgresponse', 'js_disabled'), ('_utf8', '☃'), ('state_wrapper', state_wrapper), ('submit_access', 'true')])
 		r4=config.s.post(connect_approve.replace('amp;',''),data=data3)
 
 		code= re.search('<input id="code" type="text" readonly="readonly" value=".*" style=".*" onclick=".*;" />',r4.content)

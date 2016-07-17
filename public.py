@@ -199,13 +199,13 @@ def main():
 		return
 	print('[+] RPC Session Token: {} ...'.format(access_token[:25]))
 
-	api_endpoint = get_api_endpoint(access_token)
+	api_endpoint = get_api_endpoint(access_token,'ptc')
 	if api_endpoint is None:
 		print('[-] RPC server offline')
 		return
 	print('[+] Received API endpoint: {}'.format(api_endpoint))
 
-	profile = get_profile(api_endpoint, access_token)
+	profile = get_profile(api_endpoint, access_token,'ptc')
 	if profile is not None:
 		print('[+] Login successful')
 
