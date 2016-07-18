@@ -10,9 +10,9 @@ proxies = {
   'http': 'http://127.0.0.1:8888',
   'https': 'http://127.0.0.1:8888',
 }
-use_proxy=False
+use_proxy=True
 debug=True
-
+distance=0
 google=True
 pub=None
 
