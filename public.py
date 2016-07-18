@@ -71,7 +71,7 @@ def set_location(location_name):
 		set_location_coords(loc.latitude, loc.longitude, loc.altitude)
 	except:
 		print '[-] error in set_location'
-		set_location(location_name)
+		exit()
 
 def set_location_coords(lat, long, alt):
 	global COORDS_LATITUDE, COORDS_LONGITUDE, COORDS_ALTITUDE
