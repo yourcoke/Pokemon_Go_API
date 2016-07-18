@@ -6,9 +6,9 @@ Pokémon GO API in Python
 - [x] login as pokemon trainer + token
 - [x] login over google + token
 - [x] run to pokestops
-- [ ] human run logic
+- [x] human run logic
 - [ ] clean code
-- [ ] catch pokemons
+- [x] catch pokemons
 - [ ] fully automate this script
 
 # Preview:
