@@ -6,6 +6,7 @@ Pokémon GO API in Python
 - [x] login as pokemon trainer + token
 - [x] login over google + token
 - [x] run to pokestops
+- [ ] human run logic
 - [ ] clean code
 - [ ] catch pokemons
 - [ ] fully automate this script
@@ -14,9 +15,15 @@ Pokémon GO API in Python
 
 ![Alt text](etc/screen.png?raw=true "result screen")
 
-# Video of the Pokestop bot:
+# Video of the Pokestop farmer beta v1.0:
 
 [![Alt text](http://img.youtube.com/vi/i1UmYyntz8A/0.jpg)](http://www.youtube.com/watch?v=i1UmYyntz8A "Pokemon_Go_API Pokestop farmer")
+
+Features:
+- working with google & ptc login
+- fake location
+- set distance for farming
+- good logic to prevent bans
 
 # Requirements:
 - python 2.7
