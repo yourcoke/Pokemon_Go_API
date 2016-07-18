@@ -9,7 +9,7 @@ login_oauth='https://sso.pokemon.com/sso/oauth2.0/accessToken'
 #urls end
 
 #values
-use_proxy=True
+use_proxy=False
 debug=False
 distance=0
 steps=0.0025
