@@ -16,7 +16,7 @@ Pokémon GO API in Python
 
 # Video of the Pokestop bot:
 
-[![Alt text](http://img.youtube.com/vi/PaJHeqqC3Sw/0.jpg)](http://www.youtube.com/watch?v=PaJHeqqC3Sw "Pokemon_Go_API Pokestop farmer")
+[![Alt text](http://img.youtube.com/vi/i1UmYyntz8A/0.jpg)](http://www.youtube.com/watch?v=i1UmYyntz8A "Pokemon_Go_API Pokestop farmer")
 
 # Requirements:
 - python 2.7
