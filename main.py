@@ -64,7 +64,7 @@ def main():
 		if access_token is not None:
 			print '[!] using:',config.pub
 			if config.pub:
-				public.start_work(access_token,ltype)
+				public.start_work(access_token,ltype,args.location)
 			else:
 				dirty.start_private_show(access_token,ltype,args.location)
 		else:

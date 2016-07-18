@@ -26,7 +26,8 @@ COORDS_LONGITUDE = 0
 COORDS_ALTITUDE = 0
 
 #https://github.com/tejado
-def start_work(access_token,ltype):
+def start_work(access_token,ltype,args.location):
+	set_location(loc)
 	print '[+] Token:',access_token[:40]+'...'
 	api_endpoint =get_api_endpoint(access_token,ltype)
 	if api_endpoint is not None:
