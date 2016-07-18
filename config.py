@@ -13,6 +13,7 @@ proxies = {
 use_proxy=False
 debug=True
 distance=0
+steps=0.0025
 google=True
 pub=None
 

@@ -20,10 +20,10 @@ def set_location(location_name):
 	loc = geolocator.geocode(location_name)
 
 	print('[!] Your given location: {}'.format(loc.address.encode('utf-8')))
-	print('[!] lat/long/alt: {} {} {}'.format(loc.latitude, loc.longitude, loc.altitude))
 	set_location_coords(loc.latitude, loc.longitude, loc.altitude)
 	
 def set_location_coords(lat, long, alt):
+	print('[!] lat/long/alt: {} {} {}'.format(lat, long, alt))
 	global COORDS_LATITUDE, COORDS_LONGITUDE, COORDS_ALTITUDE
 	global FLOAT_LAT, FLOAT_LONG
 	FLOAT_LAT = lat
