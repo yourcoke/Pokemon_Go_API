@@ -21,11 +21,17 @@ Pokémon GO API in Python
 
 [![Alt text](http://img.youtube.com/vi/i1UmYyntz8A/0.jpg)](http://www.youtube.com/watch?v=i1UmYyntz8A "Pokemon_Go_API Pokestop farmer")
 
+# Video of the Pokemon catcher v1.0:
+
+[![Alt text](http://img.youtube.com/vi/rtGyUPhrGY0/0.jpg)](http://www.youtube.com/watch?v=rtGyUPhrGY0 "Pokemon_Go_API Pokestop farmer")
+
 Features:
 - working with google & ptc login
 - fake location
 - set distance for farming
 - good logic to prevent bans
+- automatic catching pokemons
+- automaticly farm pokestops 
 
 # Requirements:
 - python 2.7
