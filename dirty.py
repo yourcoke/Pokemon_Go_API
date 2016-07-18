@@ -4,6 +4,9 @@ import time
 import pokemon_pb2
 import location
 import config
+from multiprocessing import Process
+
+multi=False
 
 def start_private_show(access_token,ltype,loc):
 	location.set_location(loc)
@@ -23,6 +26,16 @@ def walk_random():
 	COORDS_LONGITUDE=COORDS_LONGITUDE+config.steps
 	location.set_location_coords(COORDS_LATITUDE, COORDS_LONGITUDE, COORDS_ALTITUDE)
 	
+def split_list(a_list):
+	half = len(a_list)/2
+	return a_list[:half], a_list[half:]
+	
+def work_half_list(part,local_ses,new_rcp_point):
+	for t in part:
+		if config.debug:
+			print '[!] farming pokestop..'
+		work_with_stops(t,local_ses.ses,new_rcp_point)
+	
 def work_stop(local_ses,new_rcp_point):
 	proto_all=logic.all_stops(local_ses)
 	all_stops=api.use_api(new_rcp_point,proto_all)
@@ -34,9 +47,20 @@ def work_stop(local_ses,new_rcp_point):
 		print '[+] found: %s Pokestops within %s m'%(len(data_list),config.distance,)
 		if local_ses is not None and data_list is not None:
 			print '[+] starting show'
-			for t in data_list:
-				print '[!] farming pokestop..'
-				work_with_stops(t,local_ses.ses,new_rcp_point)
+			if multi:
+				a,b=split_list(data_list)
+				p = Process(target=work_half_list, args=(a,local_ses.ses,new_rcp_point))
+				o = Process(target=work_half_list, args=(a,local_ses.ses,new_rcp_point))
+				p.start()
+				o.start()
+				p.join()
+				o.join()
+				print '[!] farming done..'
+			else:
+				for t in data_list:
+					if config.debug:
+						print '[!] farming pokestop..'
+					work_with_stops(t,local_ses.ses,new_rcp_point)
 	else:
 		walk_random()
 		work_stop(local_ses,new_rcp_point)
@@ -49,8 +73,9 @@ def work_with_stops(current_stop,ses,new_rcp_point):
 			map = pokemon_pb2.map()
 			map.ParseFromString(tmp_api)
 			st= map.sess[0].status
+			config.earned_xp+=map.sess[0].amt
 			if st==4:
-				print "[!] +%s"%map.sess[0].amt
+				print "[!] +%s (%s)"%(map.sess[0].amt,config.earned_xp)
 			elif st==3:
 				print "[!] used"
 			elif st==2:

@@ -23,7 +23,8 @@ def set_location(location_name):
 	set_location_coords(loc.latitude, loc.longitude, loc.altitude)
 	
 def set_location_coords(lat, long, alt):
-	print('[!] lat/long/alt: {} {} {}'.format(lat, long, alt))
+	if config.debug:
+		print('[!] lat/long/alt: {} {} {}'.format(lat, long, alt))
 	global COORDS_LATITUDE, COORDS_LONGITUDE, COORDS_ALTITUDE
 	global FLOAT_LAT, FLOAT_LONG
 	FLOAT_LAT = lat
