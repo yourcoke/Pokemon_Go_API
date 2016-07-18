@@ -30,6 +30,7 @@ Features:
 - requests
 - protobuf
 - geopy
+- s2sphere
 
 # Credits:
 - Mila432
