@@ -42,10 +42,11 @@ def get_acces_token(usr,pws,type):
 	return access_token,ltype
 	
 def main():
-	if 'nux' not in platform.system():
+	if platform.system() == 'Windows':
 		os.system("title Pokemon GO API Python")
 		os.system("cls")
 	else:
+		# Catches "Lunux" and "Darwin" (OSX), among others
 		os.system("clear")
 	parser = argparse.ArgumentParser()
 	parser.add_argument("-u", "--username", help="Login", default=None)
