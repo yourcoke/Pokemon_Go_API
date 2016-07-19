@@ -11,11 +11,12 @@ login_oauth='https://sso.pokemon.com/sso/oauth2.0/accessToken'
 #values
 use_proxy=False
 debug=False
-distance=0
-steps=0.0025
+#distance=0
+steps=0.00055
 google=True
 pub=None
 earned_xp=0
+use_powerball=False
 #values end
 
 #session

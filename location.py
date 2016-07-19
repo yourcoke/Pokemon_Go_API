@@ -22,6 +22,14 @@ def get_lat():
 def get_lot():
 	return COORDS_LONGITUDE
 	
+def set_lat(new):
+	global COORDS_LATITUDE
+	COORDS_LATITUDE = f2i(new)
+	
+def set_lot(new):
+	global COORDS_LONGITUDE
+	COORDS_LONGITUDE= f2i(new)
+	
 def set_location(location_name):
 	geolocator = GoogleV3()
 	loc = geolocator.geocode(location_name)
@@ -61,8 +69,8 @@ def get_near(map):
 		for block in cell.b:
 			for obj in block.c:
 				for stop in obj.s:
-					if distance(stop.lat,stop.lon,COORDS_LATITUDE,COORDS_LONGITUDE):
-						ms.append((stop.name,stop.lat,stop.lon,get_distance(stop.lat,stop.lon,COORDS_LATITUDE,COORDS_LONGITUDE)))
+					#if distance(stop.lat,stop.lon,COORDS_LATITUDE,COORDS_LONGITUDE):
+					ms.append((stop.name,stop.lat,stop.lon,get_distance(stop.lat,stop.lon,COORDS_LATITUDE,COORDS_LONGITUDE)))
 	return ms
 	
 def get_near_p(map):
@@ -71,11 +79,25 @@ def get_near_p(map):
 		for block in cell.b:
 			for obj in block.c:
 				for stop in obj.p:
-					if distance(stop.lat,stop.lon,COORDS_LATITUDE,COORDS_LONGITUDE):
-						ms.append((stop.t.type,stop.lat,stop.lon,stop.name,stop.hash,get_distance(stop.lat,stop.lon,COORDS_LATITUDE,COORDS_LONGITUDE)))
+					#if distance(stop.lat,stop.lon,COORDS_LATITUDE,COORDS_LONGITUDE):
+					ms.append((stop.t.type,stop.lat,stop.lon,stop.name,stop.hash,get_distance(stop.lat,stop.lon,COORDS_LATITUDE,COORDS_LONGITUDE)))
 	return ms
 	
-
+def move_to(lat1, lot1,lat2, lot2):
+	if (lat1>lat2):
+		while(lat1<lat2):
+			lat1=lat1-0.000095
+	else:
+		while(lat1<lat2):
+			lat1=lat1+0.000095
+	if (lot1>lot2):
+		while(lot1>lot2):
+			lot1=lot1-0.000095
+	else:
+		while(lot2>lot1):
+			lot1=lot1+0.000095
+	return lat1, lot1,lat2, lot2
+	
 def distance(lat1, lon1,lat2, lon2):
 	lat1=l2f(lat1)
 	lon1=l2f(lon1)

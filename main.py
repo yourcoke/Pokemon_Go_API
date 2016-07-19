@@ -18,7 +18,6 @@ try:
 	import pokemon_pb2
 	import logic
 	import dirty
-	import stops
 	import api
 	config.pub=False
 except:
@@ -53,14 +52,14 @@ def main():
 	parser.add_argument("-p", "--password", help="Password", default=None)
 	parser.add_argument("-t", "--type", help="Google/PTC", required=True)
 	parser.add_argument("-l", "--location", help="Location", required=True)
-	parser.add_argument("-d", "--distance", help="Distance", required=True)
+	#parser.add_argument("-d", "--distance", help="Distance", required=True)
 	args = parser.parse_args()
 	if not args.username:
 		args.username = getpass("Username: ")
 	if not args.password:
 		args.password = getpass("Password: ")
 	if 'ptc' in args.type.lower() or 'goo' in args.type.lower():
-		config.distance=args.distance
+		#config.distance=args.distance
 		access_token,ltype=get_acces_token(args.username,args.password,args.type.lower())
 		if access_token is not None:
 			if config.debug:

@@ -54,17 +54,60 @@ def work_stop(local_ses,new_rcp_point):
 	proto_all=logic.all_stops(local_ses)
 	all_stops=api.use_api(new_rcp_point,proto_all)
 	maps = pokemon_pb2.maps()
-	maps.ParseFromString(all_stops)
+	try:
+		maps.ParseFromString(all_stops)
+	except:
+		work_stop(local_ses,new_rcp_point)
 	if show_pok:
 		data_list=location.get_near_p(maps)
 		if len(data_list)>0:
 			print '[!] found %s pokemon near you'%(len(data_list),)
 			for idx, pok in enumerate(data_list):
-				print '[!]:%s Type:%s its %s m away'%(idx,pok[0],pok[len(pok)-1],)
+				print '[!] %s Type:%s its %s m away'%(idx,pok[0],pok[len(pok)-1],)
 				#if pok[0] < 22:
-				#if pok[len(pok)-1] < 20:
+				#if pok[len(pok)-1] < 45:
+				lat1=location.l2f(location.get_lat())
+				lot1=location.l2f(location.get_lot())
+				lat2=location.l2f(pok[1])
+				lot2=location.l2f(pok[2])
+				#print location.l2f(lat1),location.l2f(lot1),location.l2f(lat2),location.l2f(lot2)
+				if (lat1>lat2):
+					while(lat1<lat2):
+						lat1=lat1-0.000095
+						location.set_lat(lat1)
+						location.set_lot(lot1)
+						info_prot= logic.get_info(local_ses.ses,pok)
+						tmp_api=api.use_api(new_rcp_point,info_prot)
+						time.sleep(2)
+				else:
+					while(lat1<lat2):
+						lat1=lat1+0.000095
+						location.set_lat(lat1)
+						location.set_lot(lot1)
+						info_prot= logic.get_info(local_ses.ses,pok)
+						tmp_api=api.use_api(new_rcp_point,info_prot)
+						time.sleep(2)
+				if (lot1>lot2):
+					while(lot1>lot2):
+						lot1=lot1-0.000095
+						location.set_lat(lat1)
+						location.set_lot(lot1)
+						info_prot= logic.get_info(local_ses.ses,pok)
+						tmp_api=api.use_api(new_rcp_point,info_prot)
+						time.sleep(2)
+				else:
+					while(lot2>lot1):
+						lot1=lot1+0.000095
+						location.set_lat(lat1)
+						location.set_lot(lot1)
+						info_prot= logic.get_info(local_ses.ses,pok)
+						tmp_api=api.use_api(new_rcp_point,info_prot)
+						time.sleep(2)
 				catch_prot= logic.catch_it(local_ses.ses,pok)
 				tmp_api=api.use_api(new_rcp_point,catch_prot)
+				print "[+] catched pok..."
+				#else:
+				#	print '[-] too far away'
 				#exit()
 				walk_random()
 		walk_random()
@@ -73,7 +116,7 @@ def work_stop(local_ses,new_rcp_point):
 		data_list=location.get_near(maps)
 		data_list = sorted(data_list, key = lambda x: x[1])
 		if len(data_list)>0:
-			print '[+] found: %s Pokestops within %s m'%(len(data_list),config.distance,)
+			print '[+] found: %s Pokestops near you'%(len(data_list),)
 			if local_ses is not None and data_list is not None:
 				print '[+] starting show'
 				if multi:
